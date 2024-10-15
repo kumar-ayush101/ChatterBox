@@ -37,7 +37,12 @@ app.use('/api/auth',authRoutes)
 app.use('/uploads',express.static('uploads'))
 app.set('io',io)
 
-
+app.get('/', (req, res) => {
+    res.send({
+        activeStatus: true, 
+        error: false
+    });
+});
 
 io.on('connection',(socket) =>{
     console.log('New client connected')
