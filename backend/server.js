@@ -19,7 +19,7 @@ const mongoString = process.env.MONGO_URI;
 const server=http.createServer(app);
 const io=socketIo(server,{
     cors:{
-        origin: "*",
+        origin: "https://chatterboxofbaba.netlify.app/",
         methods:['GET','POST','DELETE'],
     }
 })
@@ -35,6 +35,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use('/api/auth',authRoutes)
 app.use('/uploads',express.static('uploads'))
+
 app.set('io',io)
 
 app.get('/', (req, res) => {
