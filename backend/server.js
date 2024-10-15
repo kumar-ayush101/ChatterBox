@@ -11,16 +11,27 @@ const socketIo=require('socket.io')
 const Message=require('./models/Message')
 const authRoutes=require('./routes/auth')
 
+const corsOptions = {
+    origin: 'https://chatterboxofbaba.netlify.app', 
+    methods: ['GET', 'POST', 'DELETE'],
+    credentials: true 
+};
+
+
+
+
+
 const app=express();
-app.use(cors())
+app.use(cors(corsOptions))
 const PORT=5000;
 const mongoString = process.env.MONGO_URI;
 // console.log(process.env.MONGO_URI)
 const server=http.createServer(app);
 const io=socketIo(server,{
     cors:{
-        origin: "*",
-        methods:['GET','POST','DELETE'],
+        origin: 'https://chatterboxofbaba.netlify.app', 
+        methods: ['GET', 'POST'],
+        credentials: true 
     }
 })
 
